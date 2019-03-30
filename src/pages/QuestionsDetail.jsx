@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { get, post } from 'axios';
+import { getQuestionById, postChoice } from "../api";
 
 class QuestionsPage extends Component {
 
@@ -10,7 +10,7 @@ class QuestionsPage extends Component {
     }
 
     async componentDidMount() {
-        const result = await get(`http://private-anon-e71f0eb2a9-pollsapi.apiary-mock.com/questions/${this.props.match.params.id}`)
+        const result = await getQuestionById(this.props.match.params.id)
         const allVotes = result.data.choices && result.data.choices.reduce((acm, { votes }) => acm + votes, 0)
         this.setState({ question: result.data, allVotes })
     }
@@ -20,8 +20,11 @@ class QuestionsPage extends Component {
     }
 
     handleVote = async () => {
-        const result = await post(`http://private-anon-e71f0eb2a9-pollsapi.apiary-mock.com${this.state.question.choices[this.state.currentVote].url}`)
-        this.props.history.push('/')
+        const { question, currentVote } = this.state
+        if (currentVote != null) {
+            await postChoice(question.choices[currentVote].url)
+            this.props.history.push('/')
+        }
     }
 
     render() {

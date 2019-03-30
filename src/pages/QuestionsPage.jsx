@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { get, post } from 'axios'
 import { Link } from 'react-router-dom'
+import { getQuestions } from '../api'
 
 import Question from '../components/Question';
 
@@ -11,7 +11,7 @@ class QuestionsPage extends Component {
     }
 
     async componentDidMount() {
-        const results = await get(`http://private-anon-e71f0eb2a9-pollsapi.apiary-mock.com/questions`)
+        const results = await getQuestions()
         this.setState({ questions: results.data })
     }
 
