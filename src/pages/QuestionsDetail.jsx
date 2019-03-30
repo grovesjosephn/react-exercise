@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { get } from 'axios';
+import { get, post } from 'axios';
 
 class QuestionsPage extends Component {
 
@@ -15,22 +15,30 @@ class QuestionsPage extends Component {
         this.setState({ question: result.data, allVotes })
     }
 
+    handleChoiceSelection = (i) => {
+        this.setState({ currentVote: i })
+    }
+
+    handleVote = async () => {
+        const result = await post(`http://private-anon-e71f0eb2a9-pollsapi.apiary-mock.com${this.state.question.choices[this.state.currentVote].url}`)
+        this.props.history.push('/')
+    }
+
     render() {
-        const { question, allVotes } = this.state
+        const { question, allVotes, currentVote } = this.state
         return (
             <div>
                 <h1>Question: {question.question && question.question}</h1>
                 <div>
                     {
-                        question.choices && question.choices.map(({ choice, url, votes }) => (
-                            <div
-                            >
+                        question.choices && question.choices.map(({ choice, url, votes }, i) => (
+                            <div key={i} onClick={() => this.handleChoiceSelection(i)} style={{ backgroundColor: i === currentVote ? "grey" : "white" }}>
                                 <span>{choice}</span><span>{votes}</span><span>{Math.floor(votes / allVotes * 100)}%</span>
                             </div>
                         ))
                     }
                 </div>
-                <button>Save vote</button>
+                <button onClick={() => this.handleVote()}>Save vote</button>
             </div>
         )
     }
