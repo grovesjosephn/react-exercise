@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 function api(fetchFunction) {
-    return async (url) => await fetchFunction(url)
+    return async (url, body) => await fetchFunction(url, body)
 }
 
 const getApi = api(axios.get)
@@ -15,4 +15,8 @@ export async function getQuestionById(id) {
 }
 export async function postChoice(url) {
     return await postApi(`${process.env.REACT_APP_API_ROOT_URL}${url}`)
+}
+
+export async function postQuestion(body) {
+    return await postApi(`${process.env.REACT_APP_API_ROOT_URL}/questions`, body)
 } 

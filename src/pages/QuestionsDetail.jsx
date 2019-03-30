@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Flex } from 'rebass'
+import { Box, Flex } from 'rebass'
 
 import { getQuestionById, postChoice } from "../api";
 import { H1, H2 } from '../components/Headings';
-import { Table, TD } from '../components/Table'
+import { Table, TD } from '../components/Table';
+import { Button } from '../components/Buttons'
 
 const QuestionsPage = (props) => {
     const [question, setQuestion] = useState({})
@@ -36,7 +37,7 @@ const QuestionsPage = (props) => {
         <Box mx={4}>
             <H1 mb={2}>Question Details</H1>
             <H2 mb={4}>Question: {question.question && question.question}</H2>
-            <Table style={{ width: "100%" }}>
+            <Table>
                 <thead>
                     <tr>
                         <TD as="th" fontWeight="bold">Choice</TD>

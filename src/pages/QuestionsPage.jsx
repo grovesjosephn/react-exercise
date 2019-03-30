@@ -4,6 +4,7 @@ import { Box } from 'rebass'
 
 import { H1 } from '../components/Headings'
 import Question from '../components/Question';
+import { FloatingButton } from '../components/Buttons'
 import { getQuestions } from '../api'
 
 class QuestionsPage extends Component {
@@ -26,6 +27,7 @@ class QuestionsPage extends Component {
                     fontSize={6}
                     fontWeight={100}
                     color='grey'
+                    mb={4}
                 >Questions</H1>
                 {this.state.questions.map((question, i) =>
                     <Link
@@ -40,6 +42,11 @@ class QuestionsPage extends Component {
                         />
                     </Link>
                 )}
+                <Link to="/new-question">
+                    <FloatingButton>
+                        +
+                    </FloatingButton>
+                </Link>
             </Box>
         )
     }
