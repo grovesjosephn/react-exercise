@@ -5,9 +5,6 @@ import QuestionsPage from './pages/QuestionsPage'
 import QuestionsDetailPage from './pages/QuestionsDetail'
 import QuestionsCreatePage from './pages/QuestionsCreatePage'
 
-import './App.css';
-
-
 class App extends Component {
 
   render() {
