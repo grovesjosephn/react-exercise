@@ -1,7 +1,10 @@
 import React from 'react'
 import { Card, Text } from 'rebass'
+import { distanceInWordsToNow } from 'date-fns'
 
 function Question({ question, published_at, choices }) {
+    const formatedDate = distanceInWordsToNow(new Date(published_at))
+
     return (
         <Card
             width={[1, 1 / 2, 1 / 3]}
@@ -18,7 +21,7 @@ function Question({ question, published_at, choices }) {
                     {question}
                 </Text> <Text fontSize={[1]} color="grey" fontWeight="bold">({choices.length})</Text>
             </div>
-            <Text fontSize={[1]} color="grey">{published_at}</Text>
+            <Text fontSize={[1]} color="grey">{formatedDate}</Text>
         </Card >
     )
 }
