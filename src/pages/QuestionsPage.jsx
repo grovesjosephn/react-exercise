@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { getQuestions } from '../api'
+import { Box } from 'rebass'
 
+import { H1 } from '../components/Headings'
 import Question from '../components/Question';
+import { getQuestions } from '../api'
 
 class QuestionsPage extends Component {
 
@@ -17,13 +19,28 @@ class QuestionsPage extends Component {
 
     render() {
         return (
-            <div>
+            <Box
+                m={4}
+            >
+                <H1
+                    fontSize={6}
+                    fontWeight={100}
+                    color='grey'
+                >Questions</H1>
                 {this.state.questions.map((question, i) =>
-                    <Link to={question.url} key={i}>
-                        <Question {...question} />
+                    <Link
+                        to={question.url}
+                        style={{ textDecoration: 'none' }}
+                        key={i}
+                    >
+                        <Question
+                            width={[1, 1 / 2, 1 / 3]}
+                            mx={2}
+                            {...question}
+                        />
                     </Link>
                 )}
-            </div>
+            </Box>
         )
     }
 

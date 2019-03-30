@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { Box, Button, Flex } from 'rebass'
+
 import { getQuestionById, postChoice } from "../api";
+import { H1, H2 } from '../components/Headings';
+import { Table, TD } from '../components/Table'
 
 class QuestionsPage extends Component {
 
@@ -27,22 +31,38 @@ class QuestionsPage extends Component {
         }
     }
 
+
     render() {
+
         const { question, allVotes, currentVote } = this.state
         return (
-            <div>
-                <h1>Question: {question.question && question.question}</h1>
-                <div>
-                    {
-                        question.choices && question.choices.map(({ choice, url, votes }, i) => (
-                            <div key={i} onClick={() => this.handleChoiceSelection(i)} style={{ backgroundColor: i === currentVote ? "grey" : "white" }}>
-                                <span>{choice}</span><span>{votes}</span><span>{Math.floor(votes / allVotes * 100)}%</span>
-                            </div>
-                        ))
-                    }
-                </div>
-                <button onClick={() => this.handleVote()}>Save vote</button>
-            </div>
+            <Box mx={4}>
+                <H1 mb={2}>Question Details</H1>
+                <H2 mb={4}>Question: {question.question && question.question}</H2>
+                <Table style={{ width: "100%" }}>
+                    <thead>
+                        <tr>
+                            <TD as="th" fontWeight="bold">Choice</TD>
+                            <TD as="th" fontWeight="bold" textAlign="right">Votes</TD>
+                            <TD as="th" fontWeight="bold" textAlign="right">Percentage</TD>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            question.choices && question.choices.map(({ choice, url, votes }, i) => (
+                                <tr key={i} onClick={() => this.handleChoiceSelection(i)} style={{ backgroundColor: i === currentVote ? "lightgrey" : "white" }}>
+                                    <TD>{choice}</TD>
+                                    <TD textAlign="right"><span>{votes}</span></TD>
+                                    <TD textAlign="right">{Math.round(votes / allVotes * 100)}%</TD>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </Table>
+                <Flex justifyContent="end" mt={4}>
+                    <Button bg={currentVote != null ? "grey" : "lightgrey"} borderRadius={1} onClick={() => currentVote != null && this.handleVote()}>Save vote</Button>
+                </Flex>
+            </Box >
         )
     }
 

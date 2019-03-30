@@ -1,18 +1,18 @@
 import React from 'react'
-import { Card, Text } from 'rebass'
+import { Card, Flex, Text } from 'rebass'
 import { distanceInWordsToNow } from 'date-fns'
 
-function Question({ question, published_at, choices }) {
+function Question({ question, published_at, choices, ...props }) {
     const formatedDate = distanceInWordsToNow(new Date(published_at))
 
     return (
         <Card
-            width={[1, 1 / 2, 1 / 3]}
             p={4}
             borderRadius={[0, 4]}
             boxShadow={['', '0 2px 16px rgba(0, 0, 0, 0.25)']}
+            {...props}
         >
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }} >
+            <Flex justifyContent="space-between" >
                 <Text
                     fontSize={[2]}
                     fontWeight='bold'
@@ -20,7 +20,7 @@ function Question({ question, published_at, choices }) {
                 >
                     {question}
                 </Text> <Text fontSize={[1]} color="grey" fontWeight="bold">({choices.length})</Text>
-            </div>
+            </Flex>
             <Text fontSize={[1]} color="grey">{formatedDate}</Text>
         </Card >
     )
