@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
-import { get, post } from 'axios'
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import QuestionsPage from './pages/QuestionsPage'
+import QuestionsDetailPage from './pages/QuestionsDetail'
+
 import './App.css';
-import Question from './components/Question';
+
 
 class App extends Component {
 
-  state = {
-    questions: []
-  }
-
-  async componentDidMount() {
-    const results = await get(`http://private-anon-e71f0eb2a9-pollsapi.apiary-mock.com/questions`)
-
-    this.setState({ questions: results.data })
-  }
-
   render() {
     return (
-      <div>
-        {this.state.questions.map((question, i) =>
-          <Question key={i} {...question} />
-        )}
-      </div>
+      <Router>
+        <Route exact path='/' component={QuestionsPage} />
+        <Route path="/questions/:id" component={QuestionsDetailPage} />
+      </Router>
     )
   }
 
