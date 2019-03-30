@@ -17,7 +17,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.questions.map(x => <span>{x.question}</span>)}
+
+        {this.state.questions.map(({ question, published_at, choices }) =>
+          <div>
+            <div>
+              <span class="question__header">{question}</span><span class="question__choice">({choices.length})</span>
+            </div>
+            <span class="questions__published">{published_at}</span>
+          </div>
+        )}
       </div>
     )
   }
