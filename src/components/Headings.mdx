@@ -1,0 +1,34 @@
+---
+name: Headings
+---
+
+import {H1, H2, Text} from './Headings'
+import {ThemeProvider } from 'styled-components'
+import {defaultTheme} from "../styles";
+
+
+# Headings
+
+These are the various headdings I use in this project
+
+## H1
+<ThemeProvider theme={defaultTheme}>
+    <div>
+        <H1>The quick brown fox jumps over the lazy dog</H1>
+    </div>
+</ThemeProvider>
+
+## H2
+<ThemeProvider theme={defaultTheme}>
+    <div>
+        <H2>The quick brown fox jumps over the lazy dog</H2>
+    </div>
+</ThemeProvider>
+
+## Text
+<ThemeProvider theme={defaultTheme}>
+    <div>
+        <Text>The quick brown fox jumps over the lazy dog</Text>
+        <Text color="grey">The quick brown fox jumps over the lazy dog</Text>
+    </div>
+</ThemeProvider>

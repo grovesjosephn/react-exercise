@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Flex, Text } from 'rebass'
+import { Card, Flex } from 'rebass'
+import { Text } from './Headings'
 import { distanceInWordsToNow } from 'date-fns'
 
 function Question({ question, published_at, choices, ...props }) {
@@ -8,7 +9,7 @@ function Question({ question, published_at, choices, ...props }) {
     return (
         <Card
             p={4}
-            borderRadius={[0, 4]}
+            borderRadius={[0, 2]}
             boxShadow={['', '0 2px 16px rgba(0, 0, 0, 0.25)']}
             {...props}
         >
@@ -21,7 +22,7 @@ function Question({ question, published_at, choices, ...props }) {
                     {question}
                 </Text> <Text fontSize={[1]} color="grey" fontWeight="bold">({choices.length})</Text>
             </Flex>
-            <Text fontSize={[1]} color="grey">{formatedDate}</Text>
+            <Text fontSize={1} color="grey">{formatedDate}</Text>
         </Card >
     )
 }

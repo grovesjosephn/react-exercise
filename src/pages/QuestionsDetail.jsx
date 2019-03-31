@@ -3,7 +3,7 @@ import { Box, Flex } from 'rebass'
 
 import { getQuestionById, postChoice } from "../api";
 import { H1, H2 } from '../components/Headings';
-import { Table, TD } from '../components/Table';
+import { Table, TD, TR } from '../components/Table';
 import { Button } from '../components/Buttons'
 
 const QuestionsPage = (props) => {
@@ -39,26 +39,26 @@ const QuestionsPage = (props) => {
             <H2 mb={4}>Question: {question.question && question.question}</H2>
             <Table>
                 <thead>
-                    <tr>
+                    <TR>
                         <TD as="th" fontWeight="bold">Choice</TD>
                         <TD as="th" fontWeight="bold" textAlign="right">Votes</TD>
                         <TD as="th" fontWeight="bold" textAlign="right">Percentage</TD>
-                    </tr>
+                    </TR>
                 </thead>
                 <tbody>
                     {
                         question.choices && question.choices.map(({ choice, votes }, i) => (
-                            <tr key={i} onClick={() => handleChoiceSelection(i)} style={{ backgroundColor: i === currentVote ? "lightgrey" : "white" }}>
+                            <TR key={i} onClick={() => handleChoiceSelection(i)} bg={i === currentVote ? "lightgreen" : "white"}>
                                 <TD>{choice}</TD>
                                 <TD textAlign="right"><span>{votes}</span></TD>
                                 <TD textAlign="right">{Math.round(votes / allVotes * 100)}%</TD>
-                            </tr>
+                            </TR>
                         ))
                     }
                 </tbody>
             </Table>
             <Flex justifyContent="end" mt={4}>
-                <Button bg={currentVote != null ? "grey" : "lightgrey"} borderRadius={1} onClick={() => handleVote()}>Save vote</Button>
+                <Button bg={currentVote != null ? "green" : "lightgreen"} borderRadius={1} onClick={() => handleVote()}>Save vote</Button>
             </Flex>
         </Box >
     )

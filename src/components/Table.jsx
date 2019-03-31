@@ -1,5 +1,8 @@
 import React from 'react'
-import { Box, Text } from 'rebass'
+import { Box } from 'rebass'
+import { Text } from './Headings'
+import styled from 'styled-components'
+import { color, space } from 'styled-system'
 
 export const Table = ({ children, ...props }) => (
     <Box {...props}>
@@ -15,3 +18,7 @@ export const TD = ({ children, textAlign, as, ...props }) =>
         : <td style={{ textAlign }}>
             <Text {...props}>{children}</Text>
         </td>
+
+export const TR = styled.tr(
+    color, space
+)

@@ -1,0 +1,32 @@
+---
+name:  Buttons
+---
+
+import { Button, FloatingButton } from './Buttons'
+import {ThemeProvider } from 'styled-components'
+import {defaultTheme} from "../styles";
+
+# Buttons
+
+I've built 2 diferent button types
+
+
+## Generic Button
+
+This is the generic style for our button component.
+
+<ThemeProvider theme={defaultTheme}>
+    <div>
+    <Button>Click me!</Button>
+    <Button transform="uppercase">Click me!</Button>
+    </div>
+</ThemeProvider>
+
+## Floating Button
+
+This is a floating button used as call to action.
+Usualy appears at the bottom on a page.
+
+<ThemeProvider theme={defaultTheme}>
+    <FloatingButton>Click me!</FloatingButton>
+</ThemeProvider>

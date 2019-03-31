@@ -24,9 +24,6 @@ class QuestionsPage extends Component {
                 m={4}
             >
                 <H1
-                    fontSize={6}
-                    fontWeight={100}
-                    color='grey'
                     mb={4}
                 >Questions</H1>
                 {this.state.questions.map((question, i) =>
